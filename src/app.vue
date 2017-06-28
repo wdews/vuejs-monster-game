@@ -82,7 +82,7 @@
           const vm = this;
           const damagePoints = vm.you.health - val;
 
-          if (vm.running) {
+          if (vm.running && damagePoints > 0) {
             vm.addLogItem(`Monster hits Player for ${damagePoints}`, true);
           }
 
@@ -104,7 +104,7 @@
           const vm = this;
           const damagePoints = vm.monster.health - val;
 
-          if (vm.running) {
+          if (vm.running && damagePoints > 0) {
             vm.addLogItem(`Player hits Monster for ${damagePoints}`, false);
           }
 
