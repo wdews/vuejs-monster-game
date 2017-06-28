@@ -1,0 +1,5 @@
+@import '~reset-css/_reset.scss'; // Tilde makes the loader look at the root of the project
+
+@import 'components/global';
+@import 'components/layout';
+@import 'game';
