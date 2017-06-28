@@ -80,6 +80,11 @@
         },
         set (val) {
           const vm = this;
+          const damagePoints = vm.you.health - val;
+
+          if (vm.running) {
+            vm.addLogItem(`Monster hits Player for ${damagePoints}`, true);
+          }
 
           if (val <= 0) {
             return vm.endGame(false);
@@ -97,6 +102,11 @@
         },
         set (val) {
           const vm = this;
+          const damagePoints = vm.monster.health - val;
+
+          if (vm.running) {
+            vm.addLogItem(`Player hits Monster for ${damagePoints}`, false);
+          }
 
           if (val <= 0) {
             return vm.endGame(true);
@@ -139,7 +149,6 @@
 
         if (counterAttack) {
           vm.monsterHealth -= damagePoints;
-          vm.addLogItem(`Player hits Monster for ${damagePoints}`, false);
           vm.pauseAttacks();
 
           if (vm.coinToss()) {
@@ -147,7 +156,6 @@
           }
         } else {
           vm.youHealth -= damagePoints;
-          vm.addLogItem(`Monster hits Player for ${damagePoints}`, true);
         }
       },
       pauseAttacks () {
